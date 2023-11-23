@@ -7,11 +7,18 @@ class LoginController extends BaseController
 
     function index()
     {
-        return "show login form";
+        return view('loginView');
     }
 
-    function auth($username, $password)
+    function auth()
     {
+        if ($this->request->getMethod() != 'post') {
+            return;
+        }
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
         $db = db_connect();
         $builder = $db->table('users');
         $builder
@@ -19,14 +26,18 @@ class LoginController extends BaseController
             ->where('password', $password);
 
         $user = $builder->get()->getRow();
-        print_r(json_encode($user, JSON_PRETTY_PRINT));
 
         if ($user) {
-            $homeController = new HomeController();
-            echo $homeController->index();
-        }else {
-            // error msg?
-        }
+            return view('home');
 
+        } else {
+            $data['formInfo'] = 'invalid user';
+            return view('loginView', $data);
+        }
     }
-}
+
+    function register()
+    {
+        return "handle registration";
+    }
+}   

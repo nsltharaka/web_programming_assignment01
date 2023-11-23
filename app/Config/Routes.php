@@ -9,8 +9,7 @@ $routes->get('/', 'HomeController::index');
 
 // login routes
 $routes->group("user", function ($routes) {
-
-    $routes->get("/", "LoginController::index");
-    $routes->get("auth/(:any)/(:any)", "LoginController::auth/$1/$2");
-
+    $routes->add("/", "LoginController::index");
+    $routes->add("auth", "LoginController::auth");
+    $routes->add("register", "LoginController::register");
 });
