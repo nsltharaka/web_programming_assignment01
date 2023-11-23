@@ -33,7 +33,7 @@
             align-items: center;
             height: 50%;
             width: 350px;
-            height: 60%;
+            height: 50%;
             padding: 25px 25px;
             border: none;
             border-radius: 15px;
