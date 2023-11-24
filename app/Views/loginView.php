@@ -52,7 +52,7 @@
         }
 
         form input {
-            height: 35px;
+            height: 40px;
             padding-inline: 10px;
             border: 2px solid #b4b4b4;
             border-radius: 7px;
@@ -115,9 +115,9 @@
 
     <main class="container">
         <h1>Login</h1>
-        <form  action="/user/auth" method="post">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
+        <form method="post">
+            <input type="text" name="username" value="<?= $username ?? ""  ?>" placeholder="username" required>
+            <input type="password" name="password" value="<?= $username ?? ""  ?>" placeholder="password" required>
             <a class="link" href="">forgot password?</a>
             <button>Log in</button>
         </form>
