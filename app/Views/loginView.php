@@ -116,7 +116,7 @@
     <main class="container">
         <h1>Login</h1>
         <form method="post">
-            <input type="text" name="username" value="<?= $username ?? ""  ?>" placeholder="username" required>
+            <input type="text" name="username" value="<?= $username ?? ""  ?>" placeholder="email" required>
             <input type="password" name="password" value="<?= $username ?? ""  ?>" placeholder="password" required>
             <a class="link" href="">forgot password?</a>
             <button>Log in</button>

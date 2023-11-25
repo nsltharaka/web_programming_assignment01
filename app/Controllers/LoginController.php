@@ -16,14 +16,8 @@ class LoginController extends BaseController
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $db = db_connect();
-            $builder = $db->table('users');
-            $query =  $builder
-                ->where('email', $username)
-                ->where('password', $password)
-                ->get();
-
-            $user = $query->getRow();
+            $userModel = model('userModel');
+            $user = $userModel->find($username);
 
             if ($user) {
                 session()->set('user', $user);
