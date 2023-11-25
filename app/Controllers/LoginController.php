@@ -82,6 +82,7 @@ class LoginController extends BaseController
             'first_name' => 'alpha',
             'last_name' => 'alpha',
             'contact' => 'numeric|exact_length[10]|regex_match[/^0/]',
+            'nic' => 'regex_match[/^\d{9}[Vv]$|^\d{12}$/]',
             'email' => 'valid_email',
             'password' => 'min_length[8]|regex_match[/^[a-zA-Z0-9!@#$%^&*()-_=+,.?;:]+$/]',
             'confirmPassword' => 'matches[password]',

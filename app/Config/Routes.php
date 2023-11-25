@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'HomeController::index');
 
-// login routes
+// user login routes
 $routes->group("user", function ($routes) {
     $routes->add("/", "LoginController::index");
     $routes->add("register", "LoginController::register");
