@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -7,14 +6,14 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table      = 'users';
-    protected $primaryKey = 'email';
+    protected $primaryKey = 'user_id';
 
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
     // protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['first_name', 'last_name', 'nic', 'contact', 'password'];
+    protected $allowedFields = ['first_name', 'last_name', 'contact', 'email', 'password'];
 
     // Dates
     // protected $useTimestamps = false;

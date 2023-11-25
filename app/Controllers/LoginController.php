@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use PHPUnit\Framework\MockObject\Stub\ReturnReference;
+
 class LoginController extends BaseController
 {
     protected $helpers = ['form'];
@@ -44,36 +46,53 @@ class LoginController extends BaseController
 
     function register()
     {
+        $data = [
+            'formData' => [],
+            'info' => "",
+        ];
 
         if ($this->request->is('post')) {
-           // form validation
-            // $rules = [
-            //     'firstName' => 'alpha',
-            //     'lastName' => 'alpha',
-            //     'contact' => 'numeric|exact_length[10]|regex_match[/^0/]',
-            //     'email' => 'valid_email',
-            //     'password' => 'min_length[8]|regex_match[/^[a-zA-Z0-9!@#$%^&*()-_=+,.?;:]+$/]',
-            //     'confirmPassword' => 'matches[password]',
-            // ];
 
-            // if (!$this->validate($rules, $_POST)) {
-            //     return view('registerView', ['data' => $_POST]);
-            // }
+            // validation
+            if (!$this->validateRegisterForm($_POST)) {
+                $data['formData'] = $_POST;
+                return view('registerView', $data);
+            }
 
-            // // insert the user
-            // $userModel = model('userModel');
-            // $result =  $userModel->save([
-            //     'first_name' => $_POST['firstName'],
-            //     'last_name' => $_POST['lastName'],
-            //     'contact' => $_POST['contact'],
-            //     'email' => $_POST['email'],
-            //     'password' => $_POST['password'],
-            // ]);
+            // if user already exists.
+            $userModel = model('userModel');
+            $user =  $userModel->find($_POST['email']);
+            if ($user) {
+                $data['info'] = "user already exists";
+                return view('registerView', $data);
+            }
 
-            // return view('registerView', ['info' => $result ? "insertion success" : "insertion failed"]);
-            return view('registerView', ['info' => true]);
+            $result =   $userModel->insert($_POST);
+            $data['info']  = $result ?? "successfully registered";
+
+            if (!$result) {
+                return view('registerView', $data);
+            }
+
+            return redirect()->to('user');
         }
 
-        return view('registerView', ['info' => false]);
+        return view('registerView', $data);
+    }
+
+    private function validateRegisterForm($post)
+    {
+
+        //form validation
+        $rules = [
+            'first_name' => 'alpha',
+            'last_name' => 'alpha',
+            'contact' => 'numeric|exact_length[10]|regex_match[/^0/]',
+            'email' => 'valid_email',
+            'password' => 'min_length[8]|regex_match[/^[a-zA-Z0-9!@#$%^&*()-_=+,.?;:]+$/]',
+            'confirmPassword' => 'matches[password]',
+        ];
+
+        return $this->validate($rules, $post);
     }
 }

@@ -5,22 +5,17 @@
 <?= validation_list_errors() ?>
 
 <form method="post">
-    <input type="text" name="firstName" value="<?= $data['firstName'] ?? ""  ?>" placeholder="firstName" required><br><br>
-    <input type="text" name="lastName" value="<?= $data['lastName'] ?? ""   ?>" placeholder="lastName" required><br><br>
-    <input type="text" name="contact" value="<?= $data['contact'] ?? ""  ?>" placeholder="contact" required><br><br>
-    <input type="text" name="email" value="<?= $data['email'] ?? ""  ?>" placeholder="email" required><br><br>
-    <input type="text" name="password" value="<?= $data['password'] ?? ""  ?>" placeholder="password" required><br><br>
-    <input type="text" name="confirmPassword" value="<?= $data['confirmPassword'] ?? ""  ?>" placeholder="confirmPassword" required><br><br>
+    <input type="text" name="first_name" value="<?= $formData['first_name'] ?? "" ?>" placeholder="firstName"><br><br>
+    <input type="text" name="last_name" value="<?= $formData['last_name'] ?? ""  ?>" placeholder="lastName"><br><br>
+    <input type="text" name="nic" value="<?= $formData['nic'] ?? "" ?>" placeholder="nic"><br><br>
+    <input type="text" name="contact" value="<?= $formData['contact'] ?? ""  ?>" placeholder="contact"><br><br>
+    <input type="text" name="email" value="<?= $formData['email'] ?? "" ?>" placeholder="email"><br><br>
+    <input type="text" name="password" value="<?= $formData['password'] ?? ""  ?>" placeholder="password"><br><br>
+    <input type="text" name="confirmPassword" value="<?= $formData['confirmPassword']  ?? ""  ?>" placeholder="confirmPassword"><br><br>
     <input type="submit" value="submit"><br><br>
 </form>
 
-<script>
-    <?php if ($info) : ?>
+<?= $info ? view_cell('AlertMessageCell', ["message" => $info]) : "" ?>
 
-        alert('insertion successful');
-        window.location.href = '/user';
-
-    <?php endif; ?>
-</script>
 
 <?= $this->endSection() ?>
