@@ -21,7 +21,7 @@ class LoginController extends BaseController
 
             if ($user) {
                 session()->set('user', $user);
-                return view('home');
+                return view('homeView');
             } else {
 
                 $data = [
