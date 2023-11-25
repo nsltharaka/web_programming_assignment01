@@ -14,7 +14,11 @@
 
 <body>
 
-    <main>
+    <div class="bg-white w-100 position-fixed top-0" style="height: 70px; z-index: 1000;">
+        <h1>HOME | hello, <?= session('user')['first_name'] ?? "user" ?></h1>
+    </div>
+
+    <main class="position-relative" style="margin-top: 80px;">
         <?= $this->renderSection('content'); ?>
     </main>
 

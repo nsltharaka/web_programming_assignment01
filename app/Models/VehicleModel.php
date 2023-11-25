@@ -1,19 +1,29 @@
 <?php
+
 namespace App\Models;
 
 use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table      = 'users';
-    protected $primaryKey = 'user_id';
+    protected $table      = 'vehicle';
+    protected $primaryKey = 'vehicle_number';
 
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
 
     protected $returnType     = 'array';
     // protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['first_name', 'last_name', 'contact', 'email', 'password'];
+    protected $allowedFields = [
+        'brand',
+        'seats',
+        'transmission_type',
+        'fuel_type',
+        'daily_rate',
+        'category',
+        'image_url',
+        'status',
+    ];
 
     // Dates
     // protected $useTimestamps = false;

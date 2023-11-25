@@ -2,7 +2,7 @@
     <style>
         @keyframes slideIn {
             from {
-                transform: translateY(-100%);
+                transform: translateY(-200%);
             }
 
             to {
@@ -16,12 +16,12 @@
             }
 
             to {
-                transform: translateY(-100%);
+                transform: translateY(-200%);
             }
         }
 
         .message-box {
-            animation: slideIn 0.5s ease-in-out, slideOut 0.5s ease-in-out 2s forwards;
+            animation: slideIn 0.50s ease-in-out, slideOut 0.50s ease-in-out 2s forwards;
         }
     </style>
     <div class="position-absolute top-0 start-50 translate-middle-x">

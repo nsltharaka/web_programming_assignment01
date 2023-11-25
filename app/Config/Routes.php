@@ -8,7 +8,12 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'HomeController::index');
 
 // user login routes
-$routes->group("user", function ($routes) {
+$routes->group("user", function (RouteCollection $routes) {
     $routes->add("/", "LoginController::index");
     $routes->add("register", "LoginController::register");
+});
+
+// vehicle routes
+$routes->group("vehicle", function (RouteCollection $routes) {
+    $routes->get("new", 'VehicleController::index');
 });

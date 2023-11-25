@@ -2,6 +2,6 @@
 
 <?= $this->section('content') ?>
 <div class="home">
-    <h1>HOME | hello, <?= session('user')['first_name'] ?? "user" ?></h1>
+    <h2>content</h2>
 </div>
 <?= $this->endSection() ?>
