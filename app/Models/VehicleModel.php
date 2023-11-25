@@ -16,6 +16,7 @@ class UserModel extends Model
 
     protected $allowedFields = [
         'brand',
+        'model',
         'seats',
         'transmission_type',
         'fuel_type',

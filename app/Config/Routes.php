@@ -15,5 +15,5 @@ $routes->group("user", function (RouteCollection $routes) {
 
 // vehicle routes
 $routes->group("vehicle", function (RouteCollection $routes) {
-    $routes->get("new", 'VehicleController::index');
+    $routes->add("/", 'VehicleController::index');
 });
