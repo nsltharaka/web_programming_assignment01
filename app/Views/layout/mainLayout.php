@@ -28,9 +28,14 @@
         <?php if (session('user')) { ?>
 
             <div class="navbar--form greet">
-                <span>Hello, <?= session('user')['first_name'] ?></span>
-                <img src="images/user_icon.png" alt="">
+            <span>Hello, user</span>
+            <img src="images/user_icon.png" alt="">
+
+            <div class="navbar--context-menu">
+                <a class="navbar--context-menu-link" href="">my profile</a>
+                <a class="navbar--context-menu-link" href="">log out</a>
             </div>
+        </div>
 
         <?php } else { ?>
 
