@@ -74,6 +74,11 @@ class LoginController extends BaseController
         return view('registerView', $data);
     }
 
+    function logout() {
+        session()->set('user', null);
+        return view('homeView');
+    }
+
     private function validateRegisterForm($post)
     {
 

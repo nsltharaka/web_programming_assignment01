@@ -11,6 +11,7 @@ $routes->get('/', 'HomeController::index');
 $routes->group("user", function (RouteCollection $routes) {
     $routes->add("/", "LoginController::index");
     $routes->add("register", "LoginController::register");
+    $routes->get("logout", "LoginController::logout");
 });
 
 // vehicle routes

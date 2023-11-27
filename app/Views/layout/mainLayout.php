@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     <!-- Bootstrap CSS -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
@@ -17,7 +17,7 @@
 
     <nav class="navbar">
         <div class="navbar--main-logo">
-            <img src="images/logo.png" alt="">
+            <img src="/images/logo.png" alt="">
         </div>
         <ul class="navbar--list">
             <li><a href="">Home</a></li>
@@ -28,12 +28,12 @@
         <?php if (session('user')) { ?>
 
             <div class="navbar--form greet">
-            <span>Hello, user</span>
-            <img src="images/user_icon.png" alt="">
+            <span>Hello, <?= session('user')['first_name']  ?></span>
+            <img src="/images/user_icon.png" alt="">
 
             <div class="navbar--context-menu">
                 <a class="navbar--context-menu-link" href="">my profile</a>
-                <a class="navbar--context-menu-link" href="">log out</a>
+                <a class="navbar--context-menu-link" href="/user/logout">log out</a>
             </div>
         </div>
 

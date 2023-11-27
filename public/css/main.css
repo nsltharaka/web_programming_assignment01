@@ -43,10 +43,10 @@
 
 .navbar--form {
     cursor: pointer;
-    height: 100%;
 }
 
 .greet {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,7 +59,6 @@
 }
 
 .navbar--context-menu {
-    visibility: hidden;
     position: absolute;
     width: max-content;
     line-height: 2rem;
@@ -70,15 +69,17 @@
     flex-direction: column;
     padding: 0px 50px 0px 10px;
     border-radius: 7px;
+    visibility: hidden;
     top: 10%;
     right: 2.5%;
 }
 
-.navbar--context-menu a {
+.navbar--context-menu-link {
+    width: 100%;
     text-decoration: none;
     color: black;
 }
-.navbar--context-menu a:hover {
+.navbar--context-menu-link:hover {
     color: #ffc436;
 }
 
