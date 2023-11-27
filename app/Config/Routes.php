@@ -12,7 +12,7 @@ $routes->group("user", function (RouteCollection $routes) {
     $routes->add("/", "UserController::index");
     $routes->add("register", "UserController::register");
     $routes->get("logout", "UserController::logout");
-    $routes->get("profile/:(any)", "UserController::profile/$1");
+    $routes->add("profile", "UserController::profile");
 });
 
 // vehicle routes

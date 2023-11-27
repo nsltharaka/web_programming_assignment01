@@ -20,7 +20,7 @@
             <img src="/images/logo.png" alt="">
         </div>
         <ul class="navbar--list">
-            <li><a href="">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="">Vehicles</a></li>
             <li><a href="">about</a></li>
         </ul>
@@ -28,14 +28,14 @@
         <?php if (session('user')) { ?>
 
             <div class="navbar--form greet">
-            <span>Hello, <?= session('user')['first_name']  ?></span>
-            <img src="/images/user_icon.png" alt="">
+                <span>Hello, <?= session('user')['first_name']  ?></span>
+                <img src="/images/user_icon.png" alt="">
 
-            <div class="navbar--context-menu">
-                <a class="navbar--context-menu-link" href="/user/profile/<?= session('user')['email'] ?>">my profile</a>
-                <a class="navbar--context-menu-link" href="/user/logout">log out</a>
+                <div class="navbar--context-menu">
+                    <a class="navbar--context-menu-link" href="/user/profile">my profile</a>
+                    <a class="navbar--context-menu-link" href="/user/logout">log out</a>
+                </div>
             </div>
-        </div>
 
         <?php } else { ?>
 
