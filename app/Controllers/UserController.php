@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
-class LoginController extends BaseController
+class UserController extends BaseController
 {
     protected $helpers = ['form'];
 
@@ -17,11 +17,11 @@ class LoginController extends BaseController
             $password = $_POST['password'];
 
             $userModel = model('userModel');
-            $user = $userModel->find($username);
+            $user = $userModel->where('email', $username)->first();
 
             if ($user) {
                 session()->set('user', $user);
-                return view('homeView');
+                return redirect()->to('/');
             } else {
 
                 $data = [
@@ -74,9 +74,15 @@ class LoginController extends BaseController
         return view('registerView', $data);
     }
 
-    function logout() {
+    function logout()
+    {
         session()->set('user', null);
-        return view('homeView');
+        return redirect()->to('/');
+    }
+
+    function profile($user_id)
+    {
+        echo $user_id;
     }
 
     private function validateRegisterForm($post)

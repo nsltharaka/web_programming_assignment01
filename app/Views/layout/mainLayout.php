@@ -32,7 +32,7 @@
             <img src="/images/user_icon.png" alt="">
 
             <div class="navbar--context-menu">
-                <a class="navbar--context-menu-link" href="">my profile</a>
+                <a class="navbar--context-menu-link" href="/user/profile/<?= session('user')['email'] ?>">my profile</a>
                 <a class="navbar--context-menu-link" href="/user/logout">log out</a>
             </div>
         </div>
