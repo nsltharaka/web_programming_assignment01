@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
 
+:root {
+    --font-primary: Poppins;
+
+    --clr-white: #ffffff;
+    --clr-black: #000000;
+
+    --clr-primary: #ffc436;
+    --clr-primary-light: #ffd36b;
+    --clr-primary-dark: #e7b131;
+    --clr-primary-extra-dark: #b38825;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -20,7 +32,7 @@
     align-items: center;
     background-color: white;
     box-shadow: 0px 2px 10px 1px silver;
-    font-family: poppins;
+    font-family: var(--font-primary);
     font-weight: 500;
     font-size: 1.10rem;
 }
@@ -63,7 +75,7 @@
     width: max-content;
     line-height: 2rem;
     box-shadow: 0px 1px 10px 0px grey;
-    background-color: white;
+    background-color: var(--clr-white);
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -79,32 +91,137 @@
     text-decoration: none;
     color: black;
 }
+
 .navbar--context-menu-link:hover {
-    color: #ffc436;
+    color: var(--clr-primary);
 }
 
 .greet:hover .navbar--context-menu {
     visibility: visible;
 }
+
 /* 
 ************************************************************************************************
 ****** end of header ***************************************************************************
 ************************************************************************************************/
+/* 
+
+
+************************************************************************************************
+****** profile page layout *********************************************************************
+************************************************************************************************/
 
 .profile-layout {
-    height: 100vh;
-    background-color: lightgray;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    height: calc(100vh - 100px);
+    
 }
 
 .profile-layout-c1 {
-    background-color: red;
-    flex-grow: 1;
+    /* width: 300px;
+    background-color: var(--clr-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 5px; */
+    padding: 10px 0px 10px 10px;
+}
+
+.layout-c1-sub {
+    width: 200px;
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--clr-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 55px;
+    /* box-shadow: 1px 1px 10px 2px silver; */
 }
 
 .profile-layout-c2 {
-    flex-grow: 3;
-    background-color: blue;
+    flex-grow: 4;
+}
+
+.layout-navigation-button {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.layout-navigation-button:hover,
+.layout-navigation-button-active {
+    background-color: var(--clr-primary-extra-dark);
+    color: var(--clr-white);
+}
+
+.layout-action-button:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+/***********************************************************************************************
+****** end of  profile page layout *************************************************************
+************************************************************************************************/
+
+/***********************************************************************************************
+******  my vehicle container and my vehicle ****************************************************
+************************************************************************************************/
+
+.my-vehicle-action-bar {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 55px;
+}
+
+.my-vehicle-action-bar a {
+    height: 100%;
+    width: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-primary);
+    text-decoration: none;
+    font-family: poppins;
+    font-weight: 500;
+    color: var(--clr-black);
+    border-radius: 10px;
+    gap: 5px;
+}
+
+.my-vehicle-container {
+    /* border: 1px solid red; */
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+.my-vehicle-card {
+    box-shadow: 1px 1px 10px 2px silver;
+    flex-shrink: 0;
+    height: 500px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.my-vehicle-card>img {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% 0%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.my-vehicle-card>.description {
+    width: 100%;
+    padding: 10px;
 }
