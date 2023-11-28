@@ -82,9 +82,10 @@ class UserController extends BaseController
 
     function profile()
     {
-        $user = session('user');
-        print_r(str_replace("\n", "<br>", json_encode($user, JSON_PRETTY_PRINT)));  
-        echo "<h1>display vehicle details and rental details for this user</h1>";
+        return view('profileView');
+        // $user = session('user');
+        // print_r(str_replace("\n", "<br>", json_encode($user, JSON_PRETTY_PRINT)));  
+        // echo "<h1>display vehicle details and rental details for this user</h1>";
     }
 
     private function validateRegisterForm($post)
