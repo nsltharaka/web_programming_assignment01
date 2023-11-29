@@ -8,27 +8,36 @@ class VehicleController extends BaseController
 
     function index()
     {
+        $vehicleModel = model('vehicleModel');
+        $vehicles = $vehicleModel->findAll();
+
+        $props['vehicles'] = $vehicles;
+        return view('vehicleView', $props);
+    }
+
+    function new()
+    {
         $props = [
             'formData' => [],
             'info' => "",
         ];
 
         if ($this->request->is('post')) {
-            
+
             // form validation
             if (!$this->validateFormData($_POST)) {
                 $props['formData'] = $_POST;
                 return view('vehicleForm', $props);
             }
-            
+
             // check the vehicle is already exists
             $vehicleModel = model('vehicleModel');
             $vehicle = $vehicleModel->find($_POST['vehicle_number']);
-            if($vehicle) {
+            if ($vehicle) {
                 $props['info'] = "vehicle already exists";
                 return view('vehicleForm', $props);
             }
-            
+
             // insert the vehicle and redirect
             $result = $vehicleModel->insert($_POST);
             if (!$result) {
@@ -37,13 +46,13 @@ class VehicleController extends BaseController
             }
 
             return redirect()->to('/');
-
         }
 
         return view('vehicleForm', $props);
     }
 
-    function showVehicle($vehicle_id){
+    function showVehicle($vehicle_id)
+    {
         return $vehicle_id;
     }
 

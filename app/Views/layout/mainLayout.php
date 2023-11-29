@@ -21,7 +21,7 @@
         </div>
         <ul class="navbar--list">
             <li><a href="/">Home</a></li>
-            <li><a href="">Vehicles</a></li>
+            <li><a href="/vehicle">Vehicles</a></li>
             <li><a href="">about</a></li>
         </ul>
 
