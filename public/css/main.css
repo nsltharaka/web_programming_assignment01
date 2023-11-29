@@ -170,9 +170,21 @@
 /***********************************************************************************************
 ******  my vehicle container and my vehicle ****************************************************
 ************************************************************************************************/
+.my-vehicle-container {
+    /* border: 1px solid red; */
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
 
 .my-vehicle-action-bar {
     flex-shrink: 0;
+    width: 100%;
+    max-width: 1000px;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -194,20 +206,11 @@
     gap: 5px;
 }
 
-.my-vehicle-container {
-    /* border: 1px solid red; */
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 20px;
-}
-
 .my-vehicle-card {
     box-shadow: 1px 1px 10px 2px silver;
     flex-shrink: 0;
-    height: 500px;
+    min-width: 1000px;
+    height: 400px;
     border-radius: 10px;
     display: flex;
 }
@@ -223,5 +226,31 @@
 
 .my-vehicle-card>.description {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
+    font-family: var(--font-primary);
+}
+
+.my-vehicle-card>.description>.section{
+    margin-bottom: 20px;
+}
+
+.my-vehicle-card>.description h1 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.my-vehicle-card>.description h2 {
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+
+.my-vehicle-card>.description .description-line{
+    margin-bottom: 5px;
+}
+
+.my-vehicle-card>.description .description-title {
+    font-weight: 600;
 }

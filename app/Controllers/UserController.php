@@ -82,7 +82,14 @@ class UserController extends BaseController
 
     function profile()
     {
-        return view('profileView');
+        $props = [];
+
+        $vehicleModel = model('vehicleModel');
+        $vehicles =  $vehicleModel->findAll();
+
+        $props['vehicles'] = $vehicles;
+
+        return view('profileView', $props);
         // $user = session('user');
         // print_r(str_replace("\n", "<br>", json_encode($user, JSON_PRETTY_PRINT)));  
         // echo "<h1>display vehicle details and rental details for this user</h1>";

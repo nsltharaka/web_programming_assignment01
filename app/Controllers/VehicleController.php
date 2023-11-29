@@ -43,6 +43,10 @@ class VehicleController extends BaseController
         return view('vehicleForm', $props);
     }
 
+    function showVehicle($vehicle_id){
+        return $vehicle_id;
+    }
+
     private function  validateFormData($post)
     {
         // validation rules

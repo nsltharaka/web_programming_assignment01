@@ -21,6 +21,7 @@ class UserModel extends Model
         'transmission_type',
         'fuel_type',
         'daily_rate',
+        'description',
         'category',
         'image_url',
         'status',
