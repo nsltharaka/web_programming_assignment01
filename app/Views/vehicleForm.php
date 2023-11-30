@@ -11,8 +11,8 @@
 <form method="post" action="new" class="vehicle-form-container">
     <div class="column-one">
         <div class="vehicle-form-component">
-            <img src="/images/cars/<?= $formData['image_url'] ?? "../icons/empty-image.png" ?>" alt="">
-            <input type="file" name="image_url" value="<?= $formData['image_url'] ?? "" ?>" id="">
+            <img id="vehicleImage" src="/images/cars/<?= $formData['image_url'] ?? "../icons/empty-image.png" ?>" alt="">
+            <input type="file" name="image_url" value="<?= $formData['image_url'] ?? "" ?>" id="fileUpload">
         </div>
     </div>
     <div class="column-two">

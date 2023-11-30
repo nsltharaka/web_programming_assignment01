@@ -4,7 +4,7 @@
         <h2><?= $messageHeader ?></h2>
         <p><?= $message ?></p>
         <p></p>
-        <button type="button" onclick="closePopup()">OK</button>
+        <button type="button">OK</button>
 
         <script>
             let popup = document.getElementById("popup");
