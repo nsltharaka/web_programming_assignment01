@@ -1,42 +1,18 @@
-<div>
-    <style>
-        @keyframes slideIn {
-            from {
-                transform: translateY(-200%);
-            }
+<div class="popup-container popup-container-visible">
+    <div class="popup open-popup" id="popup">
+        <img src="/images/icons/<?= ($messageType == "alert") ? "alert.png" : "ok.png" ?>">
+        <h2><?= $messageHeader ?></h2>
+        <p><?= $message ?></p>
+        <p></p>
+        <button type="button" onclick="closePopup()">OK</button>
 
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(-200%);
-            }
-        }
-
-        .message-box {
-            animation: slideIn 0.50s ease-in-out, slideOut 0.50s ease-in-out 2s forwards;
-        }
-    </style>
-    <div class="position-absolute top-0 start-50 translate-middle-x">
-        <div id="message-box" class="message-box bg-primary text-white p-4 rounded shadow">
-            <?= $message ?>
-        </div>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var messageBox = document.getElementById("message-box");
-
-                // Remove the 'show' class to trigger the fade-out transition
-                setTimeout(function() {
-                    messageBox.classList.remove("show");
-                }, 1000);
-            });
+            let popup = document.getElementById("popup");
+            let popup_container = document.querySelector(".popup-container");
+            popup.addEventListener('click', () => {
+                popup.classList.toggle("open-popup");
+                popup_container.classList.toggle("popup-container-visible");
+            })
         </script>
     </div>
 </div>

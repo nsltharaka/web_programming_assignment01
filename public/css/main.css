@@ -127,11 +127,6 @@
 }
 
 .profile-layout-c1 {
-    /* width: 300px;
-    background-color: var(--clr-primary);
-    display: flex;
-    flex-direction: column;
-    gap: 5px; */
     padding: 10px 0px 10px 10px;
 }
 
@@ -144,7 +139,6 @@
     flex-direction: column;
     gap: 5px;
     padding-top: 55px;
-    /* box-shadow: 1px 1px 10px 2px silver; */
 }
 
 .profile-layout-c2 {
@@ -179,7 +173,6 @@
 ******  my vehicle container and my vehicle ****************************************************
 ************************************************************************************************/
 .my-vehicle-container {
-    /* border: 1px solid red; */
     height: 100%;
     overflow-y: auto;
     display: flex;
@@ -348,7 +341,6 @@
 
 .vehicle-form-container {
     width: 100%;
-    /* height: 100%; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
@@ -398,14 +390,14 @@
 .vehicle-form-component>input[type=file]::file-selector-button {
     height: 100%;
     width: 120px;
-    background-color: silver ;
+    background-color: silver;
     border: 1px solid silver;
     margin-right: 10px;
 }
 
 .vehicle-form-component>textarea {
     outline: none !important;
-    padding-inline-start: 0.6em;
+    padding: 0.6em 0.6em;
     font-size: 1rem;
     outline: none !important;
     border: 1.5px solid silver;
@@ -446,4 +438,78 @@
     font-family: var(--font-primary);
     font-weight: 600;
     font-size: 0.9rem;
+}
+
+.vehicle-form-button-container button:hover {
+    background-color: #e7b131;
+    cursor: pointer;
+}
+
+/***********************************************************************************************
+****** end of  vehicle registration form *******************************************************
+************************************************************************************************/
+
+/***********************************************************************************************
+****** popup box *******************************************************************************
+************************************************************************************************/
+.popup-container {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    transition: transform 0.5s, top 0.5s;
+}
+
+.popup-container-visible {
+    background-color: rgba(0, 0, 0, 0.315);
+}
+
+.popup {
+    width: 400px;
+    background-color: var(--clr-white)  ;
+    border-radius: 7px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%)scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    font-family: var(--font-primary);
+    visibility: hidden;
+}
+
+.open-popup {
+    visibility: visible;
+    top: 40%;
+    transform: translate(-50%, -50%)scale(1);
+}
+
+.popup img {
+    width: 70px;
+    margin-top: -35px;
+    border-radius: 50%;
+}
+
+.popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 10px 0 10px;
+}
+
+.popup button {
+    width: 25%;
+    margin-top: 30px;
+    padding: 7px 0;
+    background-color: var(--clr-black);
+    color: #fff;
+    outline: none;
+    font-family: var(--font-primary);
+    font-size: 0.9em;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.p {
+    font-size: 1rem;
+    font-family: var(--font-primary);
 }
