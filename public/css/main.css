@@ -19,7 +19,7 @@
 }
 
 .debug {
-    background-color: rgb(145, 238, 145, 0.2);
+    background-color: rgb(145, 238, 145, 0.1);
     border: 2px solid lightgreen;
 }
 
@@ -228,8 +228,7 @@
 }
 
 .my-vehicle-card>img {
-    min-width: 40%;
-    height: 100%;
+    width: 400px;
     object-fit: cover;
     object-position: 60% 0%;
     border-top-left-radius: 10px;
@@ -237,7 +236,7 @@
 }
 
 .my-vehicle-card>.description {
-    width: 100%;
+    width: 600px;
     padding: 20px;
     font-family: var(--font-primary);
 }
@@ -272,12 +271,11 @@
 ************************************************************************************************/
 
 /***********************************************************************************************
-****** vehicle container and my vehicle ********************************************************
+****** vehicle container and vehicles **********************************************************
 ************************************************************************************************/
 .vehicle-container {
-    min-width: 990px;
-    max-width: 990px;
-    padding: 20px 0px;
+    width: 100%;
+    padding: 20px calc((100% - 990px) / 2);
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -338,4 +336,114 @@
 
 .vehicle-card--description-grid>.grid-item>p {
     font-size: 0.8rem;
+}
+
+/***********************************************************************************************
+****** vehicle container and vehicles **********************************************************
+************************************************************************************************/
+
+/***********************************************************************************************
+****** vehicle registration form **** **********************************************************
+************************************************************************************************/
+
+.vehicle-form-container {
+    width: 100%;
+    /* height: 100%; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.vehicle-form-container .column-one {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.vehicle-form-container .column-one img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.vehicle-form-component {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: var(--font-primary);
+}
+
+.vehicle-form-component>label {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.vehicle-form-component>input,
+.vehicle-form-component>select {
+    height: 40px;
+    padding-inline-start: 0.6em;
+    font-size: 1rem;
+    outline: none !important;
+    border: 1.5px solid silver;
+    border-radius: 7px;
+    font-family: var(--font-primary);
+}
+
+.vehicle-form-component>input[type=file] {
+    margin-top: 20px;
+    padding: 0;
+}
+
+.vehicle-form-component>input[type=file]::file-selector-button {
+    height: 100%;
+    width: 120px;
+    background-color: silver ;
+    border: 1px solid silver;
+    margin-right: 10px;
+}
+
+.vehicle-form-component>textarea {
+    outline: none !important;
+    padding-inline-start: 0.6em;
+    font-size: 1rem;
+    outline: none !important;
+    border: 1.5px solid silver;
+    border-radius: 7px;
+    font-family: var(--font-primary);
+    text-align: left;
+}
+
+.vehicle-form-component>input:focus,
+.vehicle-form-component>textarea:focus,
+.vehicle-form-component>select:focus {
+    border: 1.5px solid var(--clr-primary-dark);
+}
+
+.vehicle-form-container .column-two {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.component-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.vehicle-form-button-container {
+    align-self: flex-end;
+}
+
+.vehicle-form-button-container button {
+    width: 80px;
+    height: 40px;
+    background-color: #ffc436;
+    border-radius: 7px;
+    border: none;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
 }

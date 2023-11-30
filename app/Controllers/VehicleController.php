@@ -45,7 +45,7 @@ class VehicleController extends BaseController
                 return view('vehicleView', $props);
             }
 
-            return redirect()->to('/');
+            return redirect()->to('/user/profile');
         }
 
         return view('vehicleForm', $props);
@@ -53,7 +53,16 @@ class VehicleController extends BaseController
 
     function showVehicle($vehicle_id)
     {
-        return $vehicle_id;
+        $props = [
+            'formData' => [],
+            'info' => "",
+        ];
+
+        $vehicleModel = model('vehicleModel');
+        $vehicle = $vehicleModel->find($vehicle_id);
+
+        $props['formData'] = $vehicle;
+        return view('vehicleForm', $props);
     }
 
     private function  validateFormData($post)

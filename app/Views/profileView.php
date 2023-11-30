@@ -4,7 +4,7 @@
 
 <div class="my-vehicle-container">
     <div class="my-vehicle-action-bar">
-        <a href=""><img src="/images/icons/plus.png" alt="">Add new vehicle</a>
+        <a href="/vehicle/new"><img src="/images/icons/plus.png" alt="">Add new vehicle</a>
     </div>
     <?php foreach ($vehicles as $vehicle) : ?>
         <a style="text-decoration: none; color: black;" href="/vehicle/<?= $vehicle['vehicle_number'] ?>">
