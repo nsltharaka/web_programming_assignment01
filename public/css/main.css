@@ -211,7 +211,7 @@
     box-shadow: 1px 1px 10px 2px silver;
     flex-shrink: 0;
     width: 1000px;
-    height: 400px;
+    height: 450px;
     border-radius: 10px;
     display: flex;
 }
@@ -252,7 +252,7 @@
 
 
 .my-vehicle-card>.description .description-line {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .my-vehicle-card>.description .description-title {
@@ -342,6 +342,7 @@
 .vehicle-form-container {
     width: 100%;
     display: grid;
+    overflow-y: scroll;
     grid-template-columns: repeat(2, 1fr);
 }
 
@@ -393,6 +394,16 @@
     background-color: silver;
     border: 1px solid silver;
     margin-right: 10px;
+}
+
+.vehicle-form-component.checkbox {
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.vehicle-form-component.checkbox>input {
+    width: 20px;    
 }
 
 .vehicle-form-component>textarea {
@@ -455,7 +466,7 @@
 ************************************************************************************************/
 .popup-container {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 100px);
     position: absolute;
     display: none;
     transition: transform 0.5s, top 0.5s;
@@ -493,9 +504,14 @@
 }
 
 .popup h2 {
-    font-size: 38px;
+    font-size: 2rem;
     font-weight: 500;
     margin: 10px 0 10px;
+}
+
+.popup p {
+    font-size: 0.9rem;
+    text-align: left;
 }
 
 .popup button {
@@ -513,6 +529,6 @@
 }
 
 .p {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-family: var(--font-primary);
 }

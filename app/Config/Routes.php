@@ -9,7 +9,8 @@ $routes->get('/', 'HomeController::index');
 
 // user login routes
 $routes->group("user", function (RouteCollection $routes) {
-    $routes->add("/", "UserController::index");
+    $routes->get("/", "UserController::index");
+    $routes->add("auth", "UserController::login");
     $routes->add("register", "UserController::register");
     $routes->get("logout", "UserController::logout");
     $routes->add("profile", "UserController::profile");
@@ -19,5 +20,8 @@ $routes->group("user", function (RouteCollection $routes) {
 $routes->group("vehicle", function (RouteCollection $routes) {
     $routes->add("/", 'VehicleController::index');
     $routes->add("new", 'VehicleController::new');
-    $routes->add("(:any)",'VehicleController::showVehicle/$1');
+    $routes->add("create", 'VehicleController::create');
+    $routes->add("update/(:any)", 'VehicleController::update/$1');
+    $routes->add("delete/(:any)", 'VehicleController::delete/$1');
+    $routes->add("(:any)", 'VehicleController::showVehicle/$1');
 });

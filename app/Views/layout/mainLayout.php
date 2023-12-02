@@ -63,6 +63,30 @@
                 element.classList.add("layout-navigation-button-active")
             })
         })
+
+        function previewImage() {
+            const input = document.getElementById('imageInput');
+            const preview = document.getElementById('vehicleImage');
+
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        let popup = document.getElementById("popupBtn");
+        let popup_container = document.querySelector(".popup-container");
+        popup.addEventListener('click', () => {
+            popup.classList.toggle("open-popup");
+            popup_container.classList.toggle("popup-container-visible");
+        })
     </script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

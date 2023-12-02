@@ -10,31 +10,6 @@ class UserController extends BaseController
 
     function index()
     {
-        // on form submission
-        if ($this->request->is('post')) {
-
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            $userModel = model('userModel');
-            $user = $userModel->where('email', $username)->first();
-
-            if ($user) {
-                session()->set('user', $user);
-                return redirect()->to('/');
-            } else {
-
-                $data = [
-                    'formInfo' => 'invalid user',
-                    'username' => $username,
-                    'password' => $password,
-                ];
-
-                return view('loginView', $data);
-            }
-        }
-
-        // default to login view
         return view('loginView');
     }
 
@@ -72,6 +47,35 @@ class UserController extends BaseController
         }
 
         return view('registerView', $data);
+    }
+
+    function login()
+    {
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $db = db_connect();
+        $builder = $db->table('users');
+
+        $builder->select();
+        $builder->where('email', $username);
+        $builder->where('password', $password);
+        $user = $builder->get()->getRowArray();
+
+        if ($user) {
+            session()->set('user', $user);
+            return redirect()->to('/');
+        } else {
+
+            $data = [
+                'formInfo' => 'invalid user',
+                'username' => $username,
+                'password' => $password,
+            ];
+
+            return view('loginView', $data);
+        }
     }
 
     function logout()

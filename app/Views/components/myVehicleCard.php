@@ -23,6 +23,10 @@
                 <span class="description-title">Daily rate: </span>
                 LKR <?= number_format($daily_rate, 2) ?>
             </p>
+            <p class="description-line">
+                <span class="description-title">Availability: </span>
+                <?= $status ? "Available" : "Not Available" ?>
+            </p>
         </div>
         <div class="section">
             <h2>Description</h2>

@@ -2,17 +2,23 @@
 <?php $formHelper = helper('form'); ?>
 <?php $this->section('content'); ?>
 
-<?= view_cell('AlertMessageCell', [
+<?= session()->getFlashdata('errors') ? view_cell('AlertMessageCell', [
     "messageType" => "alert",
-    "messageHeader" => "cow!",
-    "message" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis culpa eius hic ab! Consequatur beatae quam magni nisi ipsa commodi eos mollitia, a ipsum corporis sequi nobis similique, saepe magnam.",
-]) ?>
+    "messageHeader" => "Validation Errors",
+    "message" => implode("<br><br>", array_values(session()->getFlashdata('errors')))
+]) : "" ?>
 
-<form method="post" action="new" class="vehicle-form-container">
+<?= session()->getFlashdata('info') ? view_cell('AlertMessageCell', [
+    "messageType" => "alert",
+    "messageHeader" => "Validation Error",
+    "message" => session()->getFlashdata('info'),
+]) : "" ?>
+
+<form method="post" action="<?= isset($action) && $action == "new" ? "create" : "update/{$formData['vehicle_number']}" ?>" enctype="multipart/form-data" class="vehicle-form-container">
     <div class="column-one">
         <div class="vehicle-form-component">
-            <img id="vehicleImage" src="/images/cars/<?= $formData['image_url'] ?? "../icons/empty-image.png" ?>" alt="">
-            <input type="file" name="image_url" value="<?= $formData['image_url'] ?? "" ?>" id="fileUpload">
+            <img id="vehicleImage" src="/images/cars/<?= $formData['image_url'] ?? "../icons/empty-image.png" ?>" alt="" onchange="setImage()">
+            <input type="file" name="image_url" id="imageInput" onchange="previewImage()">
         </div>
     </div>
     <div class="column-two">
@@ -77,7 +83,11 @@
             </div>
             <div class="vehicle-form-component">
                 <label for="daily_rate">Daily rate (LKR)</label>
-                <input type="text" name="daily_rate" value="<?= number_format($formData['daily_rate'] ?? "0.00", 2) ?? "" ?>" id=" daily_rate">
+                <input type="text" name="daily_rate" value="<?= $formData['daily_rate'] ?? "" ?>" id=" daily_rate">
+            </div>
+            <div class="vehicle-form-component checkbox">
+                <label for="status">Availability</label>
+                <input type="checkbox" name="status" id="status" <?= isset($formData['status']) && $formData['status'] == 1 ? "checked" : ""  ?>>
             </div>
         </div>
         <div>
@@ -87,8 +97,10 @@
             </div>
         </div>
         <div class="vehicle-form-button-container">
-            <button name="action" value="save">Save</button>
-            <button name="action" value="delete">Delete</button>
+            <button name="action" value="save"><?= isset($action) && $action == "new" ? "Save" : "update" ?></button>
+            <?php if ($action == 'update') : ?>
+                <a href="/vehicle/delete/<?= $formData['vehicle_number'] ?? "" ?>" target="_self"><button type="button">Delete</button></a>
+            <?php endif ?>
             <a href="/user/profile" target="_self"><button type="button">Cancel</button></a>
         </div>
     </div>

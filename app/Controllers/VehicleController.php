@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class VehicleController extends BaseController
 {
-    protected $helpers = ['form'];
+    // protected $helpers = ['form'];
 
     function index()
     {
@@ -19,42 +19,95 @@ class VehicleController extends BaseController
     {
         $props = [
             'formData' => [],
+            'action' => "new",
+            'info' => "",
+            'errors' => [],
+        ];
+
+        return view('vehicleForm', $props);
+    }
+
+    function create()
+    {
+        // form validation
+        if (!$this->validateFormData("new")) {
+            session()->setFlashdata('errors', $this->validator->getErrors());
+            $props['formData'] = $_POST;
+            $props['action'] = "new";
+            return view('vehicleForm', $props);
+        }
+
+        // check the vehicle is already exists
+        $vehicleModel = model('vehicleModel');
+        $vehicle = $vehicleModel->find($_POST['vehicle_number']);
+        if ($vehicle) {
+            session()->setFlashdata('info', "vehicle already exists");
+            return redirect()->back()->withInput();
+        }
+
+        // insert the vehicle and redirect
+        $image = $this->request->getFile('image_url');
+        if ($image->isValid() && !$image->hasMoved()) {
+            $image->move('./images/cars', $image->getRandomName());
+        }
+
+        $_POST['image_url'] = $image->getName();
+        $result = $vehicleModel->insert($_POST);
+        if (!$result) {
+            $props['info'] = "something went wrong, please try again later";
+            return view('vehicleView', $props);
+        }
+
+        return redirect()->to('/user/profile');
+    }
+
+    function update($vehicle_id)
+    {
+        $props = [
+            'formData' => [],
+            'action' => 'update',
             'info' => "",
         ];
 
-        if ($this->request->is('post')) {
+        $vehicleModel = model('vehicleModel');
+        $vehicle = $vehicleModel->find($vehicle_id);
 
-            // form validation
-            if (!$this->validateFormData($_POST)) {
-                $props['formData'] = $_POST;
-                return view('vehicleForm', $props);
-            }
-
-            // check the vehicle is already exists
-            $vehicleModel = model('vehicleModel');
-            $vehicle = $vehicleModel->find($_POST['vehicle_number']);
-            if ($vehicle) {
-                $props['info'] = "vehicle already exists";
-                return view('vehicleForm', $props);
-            }
-
-            // insert the vehicle and redirect
-            $result = $vehicleModel->insert($_POST);
-            if (!$result) {
-                $props['info'] = "something went wrong, please try again later";
-                return view('vehicleView', $props);
-            }
-
-            return redirect()->to('/user/profile');
+        if (!$this->validateFormData("update")) {
+            session()->setFlashdata('errors', $this->validator->getErrors());
+            return redirect()->back()->withInput();
         }
 
-        return view('vehicleForm', $props);
+        $imageName = $vehicle['image_url'];
+        $newVehicleImage = $this->request->getFile('image_url');
+        if ($newVehicleImage->isValid() && !$newVehicleImage->hasMoved()) {
+            unlink("./images/cars/$imageName");
+            $imageName =  $newVehicleImage->getRandomName();
+            $newVehicleImage->move('./images/cars', $imageName);
+        }
+
+        $_POST['image_url'] = $imageName;
+        $_POST['status'] = isset($_POST['status']) ? 1 : 0;
+        $result = $vehicleModel->update($vehicle_id, $_POST);
+        if (!$result) {
+            $props['info'] = "something went wrong, please try again later";
+            return view('vehicleView', $props);
+        }
+
+        return redirect()->to('/user/profile');
+    }
+
+    function delete($vehicle_id)
+    {
+        model('vehicleModel')->delete($vehicle_id);
+        return redirect()->to('user/profile');
     }
 
     function showVehicle($vehicle_id)
     {
         $props = [
             'formData' => [],
+            'errors' => [],
+            'action' => 'update',
             'info' => "",
         ];
 
@@ -65,16 +118,37 @@ class VehicleController extends BaseController
         return view('vehicleForm', $props);
     }
 
-    private function  validateFormData($post)
+    private function  validateFormData($action)
     {
         // validation rules
         $rules = [
-            'vehicle_number' => 'regex_match[/^[A-Z]{2,3}-[0-9]{4}$/]',
-            'brand' => 'alpha',
-            'seats' => 'regex_match[/^[1-9]{1,2}$/]',
-            'daily_rate' => 'regex_match[/^\d+(\.\d{2})?$/]',
+            'vehicle_number' => [
+                'rules' => 'regex_match[/^[A-Z]{2,3}-[0-9]{4}$/]',
+                'errors' => [
+                    'regex_match' => "Vehicle Number should match the format : 'AAA-9999'"
+                ],
+            ],
+            'seats' => [
+                'rules' => 'regex_match[/^(?:[1-9]|[1-9][0-9])$/]',
+                'errors' => [
+                    'regex_match' => "seats field must be between 1-99"
+                ]
+            ],
+            'daily_rate' => [
+                'rules' => 'regex_match[/^\d+(\.\d{2})?$/]',
+                'errors' => [
+                    'regex_match' => "Daily Rate should match the format : '4999.99'"
+                ]
+            ],
+            'image_url' => [
+                'rules' => $action == 'update' ? "is_image[image_url]" : "uploaded[image_url]|is_image[image_url]",
+                'errors' => [
+                    'uploaded' => "Vehicle Image should be uploaded",
+                    'is_image' => "uploaded file should be an image (.jpg, .jpeg, .png)"
+                ],
+            ]
         ];
 
-        return $this->validate($rules, $post);
+        return $this->validate($rules);
     }
 }
