@@ -89,7 +89,7 @@ class UserController extends BaseController
         $props = [];
 
         $vehicleModel = model('vehicleModel');
-        $vehicles =  $vehicleModel->findAll();
+        $vehicles =  $vehicleModel->findAll(); // should be fixed 
 
         $props['vehicles'] = $vehicles;
 

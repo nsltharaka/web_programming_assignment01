@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use PhpParser\Node\Expr\AssignOp\Mod;
+
 class VehicleController extends BaseController
 {
     // protected $helpers = ['form'];
@@ -26,6 +28,19 @@ class VehicleController extends BaseController
 
         return view('vehicleForm', $props);
     }
+
+    function view($vehicle_id)
+    {
+        $vehicleModel = model('vehicleModel');
+        $vehicle = $vehicleModel->find($vehicle_id);
+
+        $props = [
+            'formData' => $vehicle,
+        ];
+
+        return view('vehicleDetailsView', $props);
+    }
+
 
     function create()
     {
