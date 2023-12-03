@@ -24,16 +24,16 @@ class UserController extends BaseController
 
             // validation
             if (!$this->validateRegisterForm($_POST)) {
-                $data['formData'] = $_POST;
-                return view('registerView', $data);
+                session()->setFlashdata('errors', $this->validator->getErrors());
+                return redirect()->back()->withInput();
             }
 
             // if user already exists.
             $userModel = model('userModel');
-            $user =  $userModel->find($_POST['email']);
+            $user =  $userModel->where('email', $_POST['email']);
             if ($user) {
-                $data['info'] = "user already exists";
-                return view('registerView', $data);
+                session()->setFlashdata('info', "user already exists");
+                return redirect()->back()->withInput();
             }
 
             $result =   $userModel->insert($_POST);
@@ -113,6 +113,6 @@ class UserController extends BaseController
             'confirmPassword' => 'matches[password]',
         ];
 
-        return $this->validate($rules, $post);
+        return $this->validateData($post, $rules);
     }
 }

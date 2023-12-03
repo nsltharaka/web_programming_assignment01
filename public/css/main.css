@@ -36,7 +36,7 @@
     height: 100px;
     padding: 10px 30px 10px 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     background-color: white;
     box-shadow: 0px 2px 10px 1px silver;
@@ -48,21 +48,28 @@
 .navbar--main-logo img {
     width: 130px;
     object-fit: cover;
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 
 .navbar--list {
     list-style: none;
     display: flex;
     gap: 30px;
+    flex-grow: 0;
 }
 
 .navbar--list a {
     text-decoration: none;
     color: black;
+    justify-self: end;
 }
 
 .navbar--form {
     cursor: pointer;
+    width: 160px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .greet {
@@ -115,7 +122,42 @@
 /* 
 
 
-************************************************************************************************
+/********** user registration ++++++++++++++++++++++++++++ */
+.reg-form-container {
+    margin-top: 50px;  
+    font-family: var(--font-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.reg-form-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.reg-form-container button {
+    width: 80px;
+    height: 40px;
+    background-color: #ffc436;
+    border-radius: 7px;
+    border: none;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+.reg-form-gap-fix {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  
+}
+
+/************************************************************************************************
 ****** profile page layout *********************************************************************
 ************************************************************************************************/
 
@@ -403,7 +445,7 @@
 }
 
 .vehicle-form-component.checkbox>input {
-    width: 20px;    
+    width: 20px;
 }
 
 .vehicle-form-component>textarea {
@@ -478,7 +520,7 @@
 }
 
 .popup {
-    width: 400px;
+    width: max-content;
     background-color: var(--clr-white);
     border-radius: 7px;
     position: absolute;
