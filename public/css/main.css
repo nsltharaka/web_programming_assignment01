@@ -521,6 +521,7 @@
 
 .popup {
     width: max-content;
+    min-width: 300px;
     background-color: var(--clr-white);
     border-radius: 7px;
     position: absolute;

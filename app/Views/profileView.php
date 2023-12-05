@@ -1,7 +1,6 @@
 <?= $this->extend('layout/profileLayout'); ?>
 <?= $this->section('profile-content') ?>
 
-
 <div class="my-vehicle-container">
     <div class="my-vehicle-action-bar">
         <a href="/vehicle/new"><img src="/images/icons/plus.png" alt="">Add new vehicle</a>

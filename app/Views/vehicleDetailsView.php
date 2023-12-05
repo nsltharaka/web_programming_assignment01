@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="vehicle-form-button-container vehicle-details-view-button-container">
-            <a href="/rental/new" target="_self"><button type="button">Rent this vehicle</button></a>
+            <a href="/rental/new/<?= $formData['vehicle_number'] ?>" target="_self"><button type="button">Rent this vehicle</button></a>
             <a href="/vehicle" target="_self"><button type="button">Cancel</button></a>
         </div>
     </div>

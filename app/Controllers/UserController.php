@@ -25,23 +25,24 @@ class UserController extends BaseController
             // validation
             if (!$this->validateRegisterForm($_POST)) {
                 session()->setFlashdata('errors', $this->validator->getErrors());
-                return redirect()->back()->withInput();
+                return redirect()->back()->back()->withInput();
             }
 
             // if user already exists.
-            $userModel = model('userModel');
-            $user =  $userModel->where('email', $_POST['email']);
+            $db = db_connect();
+            $builder = $db->table('users');
+
+            $builder->select();
+            $builder->where('email', $_POST['email']);
+            $user = $builder->get()->getRowArray();
+
             if ($user) {
                 session()->setFlashdata('info', "user already exists");
                 return redirect()->back()->withInput();
             }
 
-            $result =   $userModel->insert($_POST);
-            $data['info']  = $result ?? "successfully registered";
-
-            if (!$result) {
-                return view('registerView', $data);
-            }
+            $userModel = model('userModel');
+            $userModel->insert($_POST);
 
             return redirect()->to('user');
         }

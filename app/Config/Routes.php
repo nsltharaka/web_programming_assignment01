@@ -30,6 +30,6 @@ $routes->group("vehicle", function (RouteCollection $routes) {
 
 // rentals
 $routes->group('rental', function (RouteCollection $routes) {
-    $routes->add('new', 'RentalController::index');
+    $routes->add('new/(:any)', 'RentalController::index/$1');
     $routes->add('create', 'RentalController::create');
 });
