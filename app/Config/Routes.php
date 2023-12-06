@@ -15,6 +15,7 @@ $routes->group("user", function (RouteCollection $routes) {
     $routes->add("register", "UserController::register");
     $routes->get("logout", "UserController::logout");
     $routes->add("profile", "UserController::profile");
+    $routes->add("rentals", "UserController::rentals");
 });
 
 // vehicle routes

@@ -2,8 +2,6 @@
 
 <?= $this->section('content') ?>
 
-<?= session()->getFlashdata('info') ? print_r(session()->getFlashdata('info')) : "no" ?>
-
 <?= session()->getFlashdata('info') ? view_cell('AlertMessageCell', [
     "messageHeader" => "your reference",
     "message" => session()->getFlashdata('info'),
@@ -27,13 +25,13 @@
 
         <h3>User Details</h3>
         <div class="input-container-grid">
-            <label for="">First Name: <input type="text" name="first_name" value="<?= session()->get('user')['first_name'] ?>" disabled></label>
-            <label for="width-100">Last Name: <input type="text" name="last_name" value="<?= session()->get('user')['last_name'] ?>" disabled></label>
+            <label for="">First Name: <input type="text" name="first_name" value="<?= session()->get('user')['first_name'] ?? "" ?>" disabled></label>
+            <label for="width-100">Last Name: <input type="text" name="last_name" value="<?= session()->get('user')['last_name'] ?? "" ?>" disabled></label>
         </div>
 
         <div class="input-container-grid">
-            <label for="">nic: <input type="text" name="nic" value="<?= session()->get('user')['nic'] ?>" disabled></label>
-            <label for="width-100">contact: <input type="text" name="contact" value="<?= session()->get('user')['contact'] ?>" disabled></label>
+            <label for="">nic: <input type="text" name="nic" value="<?= session()->get('user')['nic'] ?? "" ?>" disabled></label>
+            <label for="width-100">contact: <input type="text" name="contact" value="<?= session()->get('user')['contact'] ?? "" ?>" disabled></label>
         </div>
 
         <h3>Vehicle Details</h3>
@@ -51,7 +49,7 @@
             <h3 id="billTotal"></h3>
         </div>
 
-        <input type="hidden" name="user_id" value="<?= session()->get('user')['user_id'] ?>">
+        <input type="hidden" name="user_id" value="<?= session()->get('user')['user_id'] ?? ""?>">
         <input type="hidden" name="vehicle_number" value="<?= $vehicle_number ?? "" ?>">
         <input type="hidden" id="asd" name="total_bill" value="">
 

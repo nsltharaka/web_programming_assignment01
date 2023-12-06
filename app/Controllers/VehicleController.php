@@ -73,6 +73,9 @@ class VehicleController extends BaseController
             return view('vehicleView', $props);
         }
 
+        $username = session()->get('user')['user_id'];
+        log_message('info', "{file} {$username} created a vehicle");
+
         return redirect()->to('/user/profile');
     }
 
@@ -108,12 +111,17 @@ class VehicleController extends BaseController
             return view('vehicleView', $props);
         }
 
+        $username = session()->get('user')['user_id'];
+        log_message('info', "{file} {$username} updated  a vehicle: {$vehicle_id}");
         return redirect()->to('/user/profile');
     }
 
     function delete($vehicle_id)
     {
         model('vehicleModel')->delete($vehicle_id);
+
+        $username = session()->get('user')['user_id'];
+        log_message('info', "{file} {$username} deleted a vehicle: {$vehicle_id}");
         return redirect()->to('user/profile');
     }
 

@@ -4,12 +4,16 @@
 <div class="profile-layout">
     <div class="profile-layout-c1">
         <div class="layout-c1-sub">
-            <div class="layout-navigation-button" tabindex="0">
-                <p>My Vehicles</p>
-            </div>
-            <div class="layout-navigation-button" tabindex="1">
-                <p>My Rentals</p>
-            </div>
+            <a href="/user/profile" style="color: black; text-decoration: none;">
+                <div class="layout-navigation-button" tabindex="0">
+                    <p>My Vehicles</p>
+                </div>
+            </a>
+            <a href="/user/rentals" style="color: black; text-decoration: none;">
+                <div class="layout-navigation-button" tabindex="1">
+                    <p>My Rentals</p>
+                </div>
+            </a>
         </div>
     </div>
     <div class="profile-layout-c2">

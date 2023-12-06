@@ -4,8 +4,13 @@ namespace App\Controllers;
 
 class RentalController extends BaseController
 {
-    public function index($vehicle_number): string
+    public function index($vehicle_number)
     {
+        $currentUser = session()->has('user');
+        if (!$currentUser) {
+            return redirect()->to('user');
+        }
+
         $vehicleModel = model('vehicleModel');
         $vehicle = $vehicleModel->find($vehicle_number);
 
@@ -18,13 +23,16 @@ class RentalController extends BaseController
         $rentalModel->insert($_POST, true);
 
         $builder = db_connect()->table('vehicle');
-        $builder -> set('status', false);
-        $builder -> where('vehicle_number', $_POST['vehicle_number']);
-        $builder -> update();
+        $builder->set('status', false);
+        $builder->where('vehicle_number', $_POST['vehicle_number']);
+        $builder->update();
 
         $id = str_replace('-', '', $_POST['from_date']) . str_replace('-', '', $_POST['vehicle_number']);
 
         session()->setFlashdata('info', $id);
+
+        $username = session()->get('user')['user_id'];
+        log_message('info', "{file} /create {$username} -> created a rent");
         return view('rentalForm');
     }
 }
