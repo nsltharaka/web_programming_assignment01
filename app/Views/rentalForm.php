@@ -93,7 +93,7 @@
 
     const popupBtn = document.getElementById('popupBtn');
     popupBtn.addEventListener('click', function() {
-        window.location.href = "/user/profile";
+        window.location.href = "/user/rentals";
     }, {
         once: true
     });

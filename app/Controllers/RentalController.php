@@ -8,7 +8,7 @@ class RentalController extends BaseController
     {
         $currentUser = session()->has('user');
         if (!$currentUser) {
-            return redirect()->to('user/rentals');
+            return redirect()->to('user');
         }
 
         $vehicleModel = model('vehicleModel');
