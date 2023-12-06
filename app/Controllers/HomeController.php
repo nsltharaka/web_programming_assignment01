@@ -6,6 +6,9 @@ class HomeController extends BaseController
 {
     public function index(): string
     {
-        return view('homeView');
+        $vehicleModel = model('vehicleModel');
+        $props['vehicles'] =  $vehicleModel->findAll(3);
+
+        return view('homeView', $props);
     }
 }

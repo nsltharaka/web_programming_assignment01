@@ -20,6 +20,8 @@ class RentalController extends BaseController
     function create()
     {
         $rentalModel = model('rentalModel');
+        $id = str_replace('-', '', $_POST['from_date']) . str_replace('-', '', $_POST['vehicle_number']);
+        $_POST['rental_id'] = $id;
         $rentalModel->insert($_POST, true);
 
         $builder = db_connect()->table('vehicle');
@@ -27,7 +29,6 @@ class RentalController extends BaseController
         $builder->where('vehicle_number', $_POST['vehicle_number']);
         $builder->update();
 
-        $id = str_replace('-', '', $_POST['from_date']) . str_replace('-', '', $_POST['vehicle_number']);
 
         session()->setFlashdata('info', $id);
 

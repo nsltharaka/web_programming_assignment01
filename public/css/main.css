@@ -29,6 +29,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
 }
 
 .navbar {
@@ -671,7 +672,7 @@
 
 /* rentals table */
 
-.table-container{
+.table-container {
     font-family: var(--font-primary);
     width: 100%;
     overflow-y: auto;
@@ -796,4 +797,99 @@ td.text-center {
 
 td.text-right {
     text-align: right;
+}
+
+/* end of the table */
+
+/* home page */
+
+.homepage-section {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 600px;
+    max-width: 990px;
+    min-width: 990px;
+    font-family: var(--font-primary);
+    margin-bottom: 30px;
+}
+
+.homepage-section-button {
+    display: block;
+    width: max-content;
+    background-color: var(--clr-primary);
+    padding: 0.8rem;
+    text-align: center;
+    color: black;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.banner {
+    background-image: url("bannerImage.jpg");
+}
+
+.banner-cover {
+    height: 100%;
+    width: 100%;
+    padding: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.banner-mainText {
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.category {
+    padding: 10px;
+}
+
+.cards-container {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.section-button {
+    margin-top: 30px;
+}
+
+.footer {
+    width: 100%;
+    padding: 10px;
+    color: var(--clr-white);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-primary-extra-dark);
+}
+
+/* search container */
+.search-container select {
+   height: 30px;
+   width: 160px;
+   font-family: var(--font-primary);
+}
+
+.search-container>button {
+    height: 30px;
+    width: 80px;
+    font-family: var(--font-primary);
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--font-primary);
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }

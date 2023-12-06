@@ -65,7 +65,7 @@ class UserController extends BaseController
 
         $builder->select();
         $builder->where('email', $username);
-        $builder->where('password', $password);
+        $builder->where('password', password_verify($password, PASSWORD_DEFAULT));
         $user = $builder->get()->getRowArray();
 
         if ($user) {
@@ -99,12 +99,13 @@ class UserController extends BaseController
             'currentPage' => 'profile'
         ];
 
+        $username = session()->get('user')['user_id'];
+
         $vehicleModel = model('vehicleModel');
-        $vehicles =  $vehicleModel->findAll(); // should be fixed 
+        $vehicles =  $vehicleModel->where('owner', $username)->findAll();
 
         $props['vehicles'] = $vehicles;
 
-        $username = session()->get('user')['user_id'];
         log_message('info', "{file} /profile {$username} accessed profile ");
         return view('profileView', $props);
         // $user = session('user');
@@ -153,14 +154,15 @@ class UserController extends BaseController
             'table_close' => '</table>',
         ];
 
+        $username = session()->get('user')['user_id'];
+
         $table->setTemplate($template);
 
         $db = db_connect();
-        $query = $db->query("SELECT rental_id, vehicle_number, from_date, to_date, pickup_location, return_location, total_bill FROM rental");
+        $query = $db->query("SELECT rental_id, vehicle_number, from_date, to_date, pickup_location, return_location, total_bill FROM rental WHERE user_id=" . $username);
 
         $props['table'] = $table->generate($query);
 
-        $username = session()->get('user')['user_id'];
         log_message('info', "{file} /profile {$username} accessed rental table ");
         return view('profileView', $props);
     }

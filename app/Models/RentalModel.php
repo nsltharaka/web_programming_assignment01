@@ -14,7 +14,7 @@ class RentalModel extends Model
     protected $returnType     = 'array';
     // protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['from_date', 'to_date','pickup_location', 'return_location', 'total_bill', 'user_id', 'vehicle_number'];
+    protected $allowedFields = ['rental_id','from_date', 'to_date', 'pickup_location', 'return_location', 'total_bill', 'user_id', 'vehicle_number'];
 
     // Dates
     // protected $useTimestamps = false;

@@ -11,7 +11,7 @@ class VehicleController extends BaseController
     function index()
     {
         $vehicleModel = model('vehicleModel');
-        $vehicles = $vehicleModel->findAll();
+        $vehicles = $vehicleModel->where('status', TRUE) -> findAll();
 
         $props['vehicles'] = $vehicles;
         return view('vehicleView', $props);
@@ -66,14 +66,17 @@ class VehicleController extends BaseController
             $image->move('./images/cars', $image->getRandomName());
         }
 
+        $username = session()->get('user')['user_id'];
+
         $_POST['image_url'] = $image->getName();
+        $_POST['owner'] = $username;
+        $_POST['status'] = $_POST['status'] ? true : false;
         $result = $vehicleModel->insert($_POST);
         if (!$result) {
             $props['info'] = "something went wrong, please try again later";
             return view('vehicleView', $props);
         }
 
-        $username = session()->get('user')['user_id'];
         log_message('info', "{file} {$username} created a vehicle");
 
         return redirect()->to('/user/profile');
@@ -140,6 +143,18 @@ class VehicleController extends BaseController
         $props['formData'] = $vehicle;
         return view('vehicleForm', $props);
     }
+
+    // function find()
+    // {
+
+    //     $db = db_connect();
+    //     $query = $db->query("SELECT * FROM vehicle WHERE category LIKE {$_POST['category']} AND fuel_type LIKE {$_POST['fuel_type']} AND transmission_type LIKE {$_POST['transmission_type']} ");
+
+    //     print_r($query); exit;
+
+    //     // $props['vehicles'] = $vehicles;
+    //     // return view('vehicleView', $props);
+    // }
 
     private function  validateFormData($action)
     {

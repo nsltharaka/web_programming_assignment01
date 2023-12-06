@@ -25,6 +25,7 @@ class UserModel extends Model
         'category',
         'image_url',
         'status',
+        'owner',
     ];
 
     // Dates

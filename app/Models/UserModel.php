@@ -14,7 +14,7 @@ class UserModel extends Model
     protected $returnType     = 'array';
     // protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['first_name', 'last_name','email', 'nic', 'contact', 'password'];
+    protected $allowedFields = ['first_name', 'last_name', 'email', 'nic', 'contact', 'password'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -31,7 +31,7 @@ class UserModel extends Model
 
     // Callbacks
     // protected $allowCallbacks = true;
-    // protected $beforeInsert   = [];
+    protected $beforeInsert   = ['hashPassword'];
     // protected $afterInsert    = [];
     // protected $beforeUpdate   = [];
     // protected $afterUpdate    = [];
@@ -39,4 +39,10 @@ class UserModel extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
+
+    function hashPassword(array $data)
+    {
+        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+        return $data;
+    }
 }
